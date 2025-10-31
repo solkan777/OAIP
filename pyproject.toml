@@ -13,3 +13,4 @@ python = "^3.8"
 
 [tool.poetry.scripts]
 brain-calc = "scripts.brain_calc:main"
+brain-gcd = "scripts.brain_gcd:main"
