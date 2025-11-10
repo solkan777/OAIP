@@ -1,5 +1,9 @@
 
 import random
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from engine import run_game
 
 def is_prime(number):
     if number < 2:
@@ -9,28 +13,15 @@ def is_prime(number):
             return False
     return True
 
+def get_question_answer():
+    number = random.randint(1, 100)
+    question = str(number)
+    correct_answer = "yes" if is_prime(number) else "no"
+    return question, correct_answer
+
 def main():
-    print("VD-prime")
-    print("Welcome to the VD Games!")
-    name = input("May I have your name? ")
-    print(f"Hello, {name}!")
-    print('Answer "yes" if given number is prime. Otherwise answer "no".')
-    
-    for i in range(3):
-        number = random.randint(1, 100)
-        correct_answer = "yes" if is_prime(number) else "no"
-        
-        print(f"Question: {number}")
-        user_answer = input("Your answer: ")
-        
-        if user_answer.lower() == correct_answer:
-            print("Correct!")
-        else:
-            print(f"'{user_answer}' is wrong answer ;(. Correct answer was '{correct_answer}'.")
-            print(f"Let's try again, {name}!")
-            return
-    
-    print(f"Congratulations, {name}!")
+    rules = 'Answer "yes" if given number is prime. Otherwise answer "no".'
+    run_game(get_question_answer, rules, "prime")
 
 if __name__ == '__main__':
     main()
